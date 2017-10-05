@@ -97,5 +97,33 @@ namespace Capstone
 
             return userInput;
         }
+
+        public static int GetDays(string message)
+        {
+            string userInput = String.Empty;            
+            int numberOfAttempts = 0;
+            DateTime dateValue = new DateTime();
+
+            do
+            {
+
+                if (numberOfAttempts > 0)
+                {
+                    Console.WriteLine("invalid input format. Please try again");
+                    Console.WriteLine($"Date must be entered in following form - MM/DD/YYYY");
+                }
+
+                Console.Write(message + " ");
+                userInput = Console.ReadLine();
+                numberOfAttempts++;
+            }
+            while (!DateTime.TryParse(userInput, out dateValue));
+
+            int year = dateValue.Year;
+            int nowYear = DateTime.Now.Year;
+            int intValue = dateValue.DayOfYear;
+            intValue += ((year - nowYear) * 365);
+            return intValue;
+        }
     }
 }

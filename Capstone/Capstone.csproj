@@ -44,13 +44,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CapstoneCLI.cs" />
-    <Compile Include="CLIHelper.cs" />
+    <Compile Include="CLI\CampgroundSubMenu.cs" />
+    <Compile Include="CLI\CampsiteSubMenu.cs" />
+    <Compile Include="CLI\CapstoneCLI.cs" />
+    <Compile Include="CLI\CLIHelper.cs" />
     <Compile Include="DAL\CampgroundDAL.cs" />
+    <Compile Include="DAL\CampsiteDAL.cs" />
     <Compile Include="DAL\ParksDAL.cs" />
     <Compile Include="DAL\ReservationDAL.cs" />
+    <Compile Include="CLI\ReservationSubMenu.cs" />
     <Compile Include="Models\Campground.cs" />
+    <Compile Include="Models\Campsite.cs" />
     <Compile Include="Models\Park.cs" />
+    <Compile Include="Models\Reservation.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

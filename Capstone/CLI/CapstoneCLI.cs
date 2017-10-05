@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Capstone.Models;
 using Capstone.DAL;
+using Capstone.CLI;
 
 namespace Capstone
 {
@@ -30,7 +31,9 @@ namespace Capstone
                         break;
 
                     case "2":
-                        ShowAllCampgrounds();
+                        //leads to sub menu
+                        CampgroundSubMenu camp = new CampgroundSubMenu();
+                        camp.DisplayCampGroundMenu();
                         break;
 
                     case "Q":
@@ -59,31 +62,31 @@ namespace Capstone
     
             }
         }
-        private void ShowAllCampgrounds()
-        {
-            ParksDAL dal = new ParksDAL(connectionString);
-            List<Park> allParks = dal.GetAllParks();
+        //private void ShowAllCampgrounds()
+        //{
+        //    ParksDAL dal = new ParksDAL(connectionString);
+        //    List<Park> allParks = dal.GetAllParks();
 
-            foreach (Park p in allParks)
-            {
-                DateTime dateOnly = p.Establish_Date;
+        //    foreach (Park p in allParks)
+        //    {
+        //        DateTime dateOnly = p.Establish_Date;
 
-                Console.WriteLine($"Park Id: {p.Id}) Name: {p.Name}  Location: {p.Location}");
-            }
+        //        Console.WriteLine($"Park Id: {p.Id}) Name: {p.Name}  Location: {p.Location}");
+        //    }
 
-            int idInput = CLIHelper.GetInteger("Please select park (enter park id): ");
-            CampgroundDAL cdal = new CampgroundDAL(connectionString);
-            List<Campground> allCampgrounds = cdal.GetAllCampgrounds(idInput);
+        //    int idInput = CLIHelper.GetInteger("Please select park (enter park id): ");
+        //    CampgroundDAL cdal = new CampgroundDAL(connectionString);
+        //    List<Campground> allCampgrounds = cdal.GetAllCampgrounds(idInput);
 
-            foreach(Campground c in allCampgrounds)
-            {
+        //    foreach(Campground c in allCampgrounds)
+        //    {
                
-                decimal dailyFee = c.Daily_fee;
+        //        decimal dailyFee = c.Daily_fee;
 
-                Console.WriteLine();
-                Console.WriteLine($"Id: {c.Campground_id} Name: {c.Name} Open from: {c.Open_from_mm} - {c.Open_to_mm} Fee: {dailyFee.ToString("c")}");
+        //        Console.WriteLine();
+        //        Console.WriteLine($"Id: {c.Campground_id} Name: {c.Name} Open from: {c.Open_from_mm} - {c.Open_to_mm} Fee: {dailyFee.ToString("c")}");
 
-            }
-        }
+        //    }
+        //}
     }
 }
