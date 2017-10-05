@@ -11,7 +11,8 @@ namespace Capstone
     {
         static void Main(string[] args)
         {
-            
+            CapstoneCLI c = new CapstoneCLI();
+            c.Run();
         }
     }
 }
