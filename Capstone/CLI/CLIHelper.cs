@@ -100,7 +100,7 @@ namespace Capstone
 
         public static int GetDays(string message)
         {
-            string userInput = String.Empty;            
+            string userInput = String.Empty;
             int numberOfAttempts = 0;
             DateTime dateValue = new DateTime();
 
@@ -124,6 +124,30 @@ namespace Capstone
             int intValue = dateValue.DayOfYear;
             intValue += ((year - nowYear) * 365);
             return intValue;
+        }
+        
+        public static DateTime GetDateTime(string message)
+        {
+            string userInput = String.Empty;
+            int numberOfAttempts = 0;
+            DateTime dateValue = new DateTime();
+
+            do
+            {
+
+                if (numberOfAttempts > 0)
+                {
+                    Console.WriteLine("invalid input format. Please try again");
+                    Console.WriteLine($"Date must be entered in following form - MM/DD/YYYY");
+                }
+
+                Console.Write(message + " ");
+                userInput = Console.ReadLine();
+                numberOfAttempts++;
+            }
+            while (!DateTime.TryParse(userInput, out dateValue));
+
+            return dateValue.Date;
         }
     }
 }

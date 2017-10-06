@@ -21,6 +21,7 @@ namespace Capstone.CLI
 
             Console.WriteLine("1 - Search for available reservation");
             Console.WriteLine("Q - return to previous menu");
+            Console.WriteLine();
 
             string input = CLIHelper.GetString("Please select an option");
 
@@ -29,10 +30,13 @@ namespace Capstone.CLI
                 case "1":
                     //leads to sub menu
                     CampgroundSubMenu camp = new CampgroundSubMenu();
-                    camp.SearchAvailableDates();
+                    camp.DisplayReservationMenu();
                     break;
 
                 case "Q":
+                    CapstoneCLI mainDisplay = new CapstoneCLI();
+                    mainDisplay.Run();
+                    break;
                     return;
             }
         }
@@ -58,20 +62,14 @@ namespace Capstone.CLI
 
                 decimal dailyFee = c.Daily_fee;
 
-                Console.WriteLine();
                 Console.WriteLine($"Id: {c.Campground_id} Name: {c.Name} Open from: {c.Open_from_mm} - {c.Open_to_mm} Fee: {dailyFee.ToString("c")}");
             }                     
         }
 
-        public void SearchAvailableDates()
+        public void DisplayReservationMenu()
         {
-            //add campsite number
-            int campgroundId = CLIHelper.GetInteger("Please enter the campground you prefer");
-            //add start date
-            int start = CLIHelper.GetDays("please enter desired start date MM/DD/YYYY");
-            //add end date
-            int end = CLIHelper.GetDays("please enter desired end date MM/DD/YYYY");
-
+            CampsiteSubMenu siteMenu = new CampsiteSubMenu();
+            siteMenu.SearchAvailableDates();
         }
     }
     

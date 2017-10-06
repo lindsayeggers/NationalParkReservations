@@ -13,6 +13,7 @@ namespace Capstone
     {
         private string connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=Capstone;User ID=te_student;Password=sqlserver1";
 
+
         public void Run()
         {
             while (true)
@@ -21,8 +22,9 @@ namespace Capstone
                 Console.WriteLine("1 - Show all parks");
                 Console.WriteLine("2 - Show all campgrounds");
                 Console.WriteLine("Q - Quit");
+                Console.WriteLine();
 
-                string input = CLIHelper.GetString("Please select an option");
+                string input = CLIHelper.GetString("Please select an option:");
 
                 switch (input.ToUpper())
                 {
@@ -53,13 +55,13 @@ namespace Capstone
             foreach (Park p in allParks)
             {
                 DateTime dateOnly = p.Establish_Date;
-                
+
                 Console.WriteLine();
                 Console.WriteLine($"{p.Id}) {p.Name}  {p.Location} \tEstablished in - {dateOnly.ToString("d")} \tVisitors - {p.Visitors}");
                 Console.WriteLine();
                 Console.WriteLine($" DESCRIPTION: {p.Description}");
 
-    
+
             }
         }
         //private void ShowAllCampgrounds()
@@ -80,7 +82,7 @@ namespace Capstone
 
         //    foreach(Campground c in allCampgrounds)
         //    {
-               
+
         //        decimal dailyFee = c.Daily_fee;
 
         //        Console.WriteLine();

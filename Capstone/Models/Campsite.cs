@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Capstone.Models
 {
-    class Campsite
+    public class Campsite
     {
         public int Site_id { get; set; }
         public int Campground_id { get; set; }
@@ -15,5 +15,6 @@ namespace Capstone.Models
         public bool WheelchairOK { get; set; }
         public int Max_RV_Length { get; set; }
         public bool Utilities { get; set; }
+        public string Total_Fee { get; set; }
     }
 }

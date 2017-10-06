@@ -11,11 +11,31 @@ namespace Capstone
     {
         static void Main(string[] args)
         {
-            int th = CLIHelper.GetDays("enter");
-            Console.WriteLine(th);
+            Console.WriteLine(@"              ,,))))))));,                                                 ");
+            Console.WriteLine(@"           __)))))))))))))),                                               ");
+            Console.WriteLine(@"\|/       -\(((((''''((((((((.                                             ");
+            Console.WriteLine(@"-*-==//////((''  .     `)))))),                                            ");
+            Console.WriteLine(@"/|\      ))| o    ;-.    '(((((                                  ,(,       ");
+            Console.WriteLine(@"         ( `|    /  )    ;))))'                               ,_))^;(~     ");
+            Console.WriteLine(@"            |   |   |   ,))((((_     _____------~~~-.        %,;(;(>';'~   ");
+            Console.WriteLine(@"            o_);   ;    )))(((` ~---~  `::           \      %%~~)(v;(`('~  ");
+            Console.WriteLine(@"                  ;    ''''````         `:       `:::|\,__,%%    );`'; ~   ");
+            Console.WriteLine(@"                 |   _                )     /      `:|`----'     `-'       ");
+            Console.WriteLine(@"           ______/\/~    |                 /        /                      ");
+            Console.WriteLine(@"         /~;;.____/;;'  /          ___--,-(   `;;;/                        ");
+            Console.WriteLine(@"        / //  _;______;'------~~~~~    /;;/\    /                          ");
+            Console.WriteLine(@"       //  | |                        / ;   \;;,\                          ");
+            Console.WriteLine(@"      (<_  | ;                      /',/-----'  _>                         ");
+            Console.WriteLine(@"       \_| ||_                     //~;~~~~~~~~~                           ");
+            Console.WriteLine(@"           `\_|                   (,~~                                     ");
+            Console.WriteLine(@"                                   \~\                                     ");
+            Console.WriteLine(@"                                    ~~                                     ");
+            Console.WriteLine(@"                                                                           ");
 
-            //CapstoneCLI c = new CapstoneCLI();
-            //c.Run();
+            CapstoneCLI c = new CapstoneCLI();
+            c.Run();
         }
     }
 }
+//int th = CLIHelper.GetDays("enter");
+//Console.WriteLine(th);
