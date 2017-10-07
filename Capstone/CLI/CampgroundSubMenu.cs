@@ -19,11 +19,13 @@ namespace Capstone.CLI
 
             cgsm.ShowAllCampgrounds();
 
+            Console.WriteLine();
             Console.WriteLine("1 - Search for available reservation");
             Console.WriteLine("Q - return to previous menu");
             Console.WriteLine();
 
-            string input = CLIHelper.GetString("Please select an option");
+            string input = CLIHelper.GetString("Please select an option:");
+            Console.WriteLine();
 
             switch (input.ToUpper())
             {
@@ -45,6 +47,7 @@ namespace Capstone.CLI
         {
             ParksDAL dal = new ParksDAL(connectionString);
             List<Park> allParks = dal.GetAllParks();
+            Console.WriteLine("-------PARKS-------");
 
             foreach (Park p in allParks)
             {
@@ -54,9 +57,11 @@ namespace Capstone.CLI
             }
 
             int idInput = CLIHelper.GetInteger("Please select park (enter park id): ");
+            Console.WriteLine();
             CampgroundDAL cdal = new CampgroundDAL(connectionString);
             List<Campground> allCampgrounds = cdal.GetAllCampgrounds(idInput);
 
+            Console.WriteLine("------CAMPGROUNDS------");
             foreach (Campground c in allCampgrounds)
             {
 

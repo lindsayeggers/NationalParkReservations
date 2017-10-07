@@ -17,7 +17,7 @@ namespace Capstone.DAL
 
         public void MakeReservation(int selection, DateTime start, DateTime end)
         {
-            string reservationName = CLIHelper.GetString("Enter the name you are reserving this under");
+            string reservationName = CLIHelper.GetString("Enter the name for the reservation:");
             DateTime createdOn = DateTime.Now;
 
             try

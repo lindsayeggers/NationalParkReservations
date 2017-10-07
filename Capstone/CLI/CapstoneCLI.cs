@@ -25,6 +25,7 @@ namespace Capstone
                 Console.WriteLine();
 
                 string input = CLIHelper.GetString("Please select an option:");
+                Console.WriteLine();
 
                 switch (input.ToUpper())
                 {
@@ -59,7 +60,7 @@ namespace Capstone
                 Console.WriteLine();
                 Console.WriteLine($"{p.Id}) {p.Name}  {p.Location} \tEstablished in - {dateOnly.ToString("d")} \tVisitors - {p.Visitors}");
                 Console.WriteLine();
-                Console.WriteLine($" DESCRIPTION: {p.Description}");
+                Console.WriteLine($"DESCRIPTION: {p.Description}");
 
 
             }

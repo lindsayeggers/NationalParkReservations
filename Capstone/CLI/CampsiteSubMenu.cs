@@ -18,11 +18,11 @@ namespace Capstone.CLI
         public void SearchAvailableDates()
         {
             //add campsite number
-            int campgroundId = CLIHelper.GetInteger("Please enter the campground you prefer");
+            int campgroundId = CLIHelper.GetInteger("Please enter the campground you prefer:");
             //add start date
-            DateTime start = CLIHelper.GetDateTime("please enter desired start date MM/DD/YYYY");
+            DateTime start = CLIHelper.GetDateTime("Please enter desired start date (MM/DD/YYYY):");
             //add end date
-            DateTime end = CLIHelper.GetDateTime("please enter desired end date MM/DD/YYYY");
+            DateTime end = CLIHelper.GetDateTime("Please enter desired end date (MM/DD/YYYY):");
 
             CampsiteDAL camp = new CampsiteDAL(connectionString);
             List<int> campArea = camp.ShowCampsitesAvailable(campgroundId, start, end);
@@ -48,7 +48,7 @@ namespace Capstone.CLI
 
                 while (i != campArea.Count && i < 5)
                 {
-                    Console.WriteLine($"site: {campArea[i]}, total cost: {totalFee}");
+                    Console.WriteLine($"Site: {campArea[i]}, Total Cost: {totalFee}");
                     i++;
                 }
 
@@ -57,7 +57,7 @@ namespace Capstone.CLI
             }
 
             Console.WriteLine("1 - Make a reservation");
-            Console.WriteLine("Q - return to previous menu");
+            Console.WriteLine("Q - Return to previous menu");
             Console.WriteLine();
 
             string input = CLIHelper.GetString("Please select an option:");
@@ -67,7 +67,7 @@ namespace Capstone.CLI
             switch (input.ToUpper())
             {
                 case "1":
-                    int site = CLIHelper.GetInteger("please select the site you'd like to reserve");
+                    int site = CLIHelper.GetInteger("Please select the site to reserve:");
                     reserveSpot.MakeReservation(site, start, end);
                     break;
 
