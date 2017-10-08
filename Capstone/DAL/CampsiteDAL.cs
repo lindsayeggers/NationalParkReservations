@@ -16,12 +16,15 @@ namespace Capstone.DAL
         private const string SQL_CurrentReservations = "select * from reservation join site on site.site_id = reservation.site_id join campground on site.campground_id = campground.campground_id where campground.campground_id = @emptyCampsite";
         private const string SQL_UnreservedSites = "select * from site where site.site_id not in (select reservation.site_id from reservation) and site.campground_id = @emptyCampsite;";
         private const string SQL_CheckCorrectPark = "select campground.campground_id from campground where campground.park_id = @parkID";
+        private const string SQL_OpenMonths = "select campground.* from campground where campground.campground_id = @campground";
 
         public CampsiteDAL(string connectionString)
         {
             this.connectionString = connectionString;
         }
-                
+
+        
+        
         public List<int> ShowCampsitesAvailable(int availableSite, DateTime requestedStart, DateTime requestedEnd)
         {
             Dictionary<int, bool> openCampsites = new Dictionary<int, bool>();
@@ -115,10 +118,10 @@ namespace Capstone.DAL
 
                         }
                     }
-                                        
-                    foreach(KeyValuePair<int, bool> x in openCampsites)
-                    {                        
-                        if(x.Value == true)
+
+                    foreach (KeyValuePair<int, bool> x in openCampsites)
+                    {
+                        if (x.Value == true)
                         {
                             siteOpen.Add(x.Key);
                         }
@@ -171,6 +174,52 @@ namespace Capstone.DAL
                 }
 
             }
+        }
+
+        public void ConfirmOpenMonth(int park, int campgroundIdInput, DateTime start, DateTime end)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(SQL_OpenMonths, conn);
+                    cmd.Parameters.AddWithValue("@campground", campgroundIdInput);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        int open = Convert.ToInt32(reader["open_from_mm"]);
+                        int close = Convert.ToInt32(reader["open_to_mm"]);
+                        int name = Convert.ToInt32(reader["name"]);
+
+
+                        if (start.Month >= open && end.Month <= close)
+                        {
+                            return;
+                        }
+                        else
+                        {
+                            string begin = CLIHelper.GetMonth(start.Month);
+                            string finish = CLIHelper.GetMonth(end.Month);
+                            Console.Beep(1700, 250);
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine($"{name} is only available from {begin} to {finish}");
+                            Console.ResetColor();
+                            CampsiteSubMenu camp = new CampsiteSubMenu();
+                            camp.SearchAvailableDates(park);
+                        }
+                    }
+                }
+            }
+            catch
+            {
+
+            }
+            
+
         }
     }
 }

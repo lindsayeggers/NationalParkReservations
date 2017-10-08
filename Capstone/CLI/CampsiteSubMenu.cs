@@ -28,8 +28,9 @@ namespace Capstone.CLI
             //add end date
             DateTime end = CLIHelper.GetDateTime("Please enter desired end date (MM/DD/YYYY):");
 
-            
-            List<int> campArea = camp.ShowCampsitesAvailable(campgroundIdInput, start, end);
+            camp.ConfirmOpenMonth(park, campgroundIdInput, start, end);
+
+            List<int> campArea = camp.ShowCampsitesAvailable( campgroundIdInput, start, end);
             int i = 0;
             Campground selection = new Campground();
 

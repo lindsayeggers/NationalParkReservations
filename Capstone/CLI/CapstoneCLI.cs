@@ -21,13 +21,14 @@ namespace Capstone
                 Console.WriteLine();
                 Console.WriteLine("1 - Show all parks");
                 Console.WriteLine("2 - Show all campgrounds");
+                Console.WriteLine("3 - Other Menu options");
                 Console.WriteLine("Q - Quit");
                 Console.WriteLine();
 
                 string input = CLIHelper.GetString("Please select an option:");
                 Console.WriteLine();
                 input = input.ToUpper();
-                if (input == "1" || input == "2" || input == "Q")
+                if (input == "1" || input == "2" || input == "3" || input == "Q")
                 {
                     switch (input)
                     {
@@ -39,6 +40,11 @@ namespace Capstone
                             //leads to sub menu
                             CampgroundSubMenu camp = new CampgroundSubMenu();
                             camp.DisplayCampGroundMenu();
+                            break;
+
+                        case "3":
+                            OtherCLI other = new OtherCLI();
+                            other.Menu();
                             break;
 
                         case "Q":

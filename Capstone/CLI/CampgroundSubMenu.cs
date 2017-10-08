@@ -69,7 +69,7 @@ namespace Capstone.CLI
                 {
                     DateTime dateOnly = p.Establish_Date;
 
-                    Console.WriteLine($"Park Id: {p.Id}) Name: {p.Name}  Location: {p.Location}");
+                    Console.WriteLine($"Park Id: {p.Id}) Name: {(p.Name).PadRight(20)}  Location: {p.Location}");
                 }
 
                 idInput = CLIHelper.GetInteger("Please select park (enter park id): ");
@@ -95,8 +95,9 @@ namespace Capstone.CLI
             {
 
                 decimal dailyFee = c.Daily_fee;
-
-                Console.WriteLine($"Id: {c.Campground_id} Name: {c.Name} Open from: {c.Open_from_mm} - {c.Open_to_mm} Fee: {dailyFee.ToString("c")}");
+                string from = CLIHelper.GetMonth(c.Open_from_mm);
+                string to = CLIHelper.GetMonth(c.Open_to_mm);
+                Console.WriteLine($"Id: {c.Campground_id} Name: {(c.Name).PadRight(25)} Open from: {from} - {(to).PadRight(5)} Fee: {dailyFee.ToString("c")}");
             }
             return idInput;
         }

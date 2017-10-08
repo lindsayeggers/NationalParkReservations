@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Capstone.DAL;
 using Capstone.Models;
 using System.Data.SqlClient;
+using Capstone.DeliveryProviders;
+using Capstone.CLI;
 
 namespace Capstone.DAL
 {
@@ -36,6 +38,43 @@ namespace Capstone.DAL
                     cmd.Parameters.AddWithValue("@createDate", createdOn);
 
                     SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (true)
+                    {
+                        Console.WriteLine("Welcome to our delivery service program.");
+                        Console.WriteLine("Please choose one of the following delivery options.");
+                        Console.WriteLine("1 - Console Delivery");
+                        Console.WriteLine("2 - Email Delivery");
+                        //Console.WriteLine("3 - SMS Delivery");
+                        Console.WriteLine();
+                        string runInput ="";
+                        string choice = CLIHelper.GetString("Make a choice > ");
+
+
+                        IDeliveryService ds = null;
+                        switch (choice)
+                        {
+                            case "1":
+                                ds = new ConsoleDeliveryService();
+                                Console.WriteLine();
+                                runInput = reservationName;
+                                break;
+
+                            case "2":
+                                ds = new EmailDeliveryService();
+                                Console.WriteLine("please enter your email address");
+                                runInput = Console.ReadLine();
+                                break;
+
+                                //case "3":
+                                //    ds = new SMSDeliveryService();
+                                //    break;
+                        }
+                        ReservationCLI confirmation = new ReservationCLI(ds);
+
+                        confirmation.Run(runInput);
+                        break;
+                    }
                 }
             }
             catch(SqlException ex)
@@ -43,7 +82,7 @@ namespace Capstone.DAL
                 throw;
             }
             finally
-            {
+            {                
                 Console.WriteLine("Thanks for reserving your campsite with Unicorn Park Registry");
             }
         }

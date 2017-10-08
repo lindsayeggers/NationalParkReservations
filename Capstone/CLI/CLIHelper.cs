@@ -98,34 +98,34 @@ namespace Capstone
             return userInput;
         }
 
-        public static int GetDays(string message)
-        {
-            string userInput = String.Empty;
-            int numberOfAttempts = 0;
-            DateTime dateValue = new DateTime();
+        //public static int GetDays(string message)
+        //{
+        //    string userInput = String.Empty;
+        //    int numberOfAttempts = 0;
+        //    DateTime dateValue = new DateTime();
 
-            do
-            {
+        //    do
+        //    {
 
-                if (numberOfAttempts > 0)
-                {
-                    Console.WriteLine("invalid input format. Please try again");
-                    Console.WriteLine($"Date must be entered in following form - MM/DD/YYYY");
-                }
+        //        if (numberOfAttempts > 0)
+        //        {
+        //            Console.WriteLine("invalid input format. Please try again");
+        //            Console.WriteLine($"Date must be entered in following form - MM/DD/YYYY");
+        //        }
 
-                Console.Write(message + " ");
-                userInput = Console.ReadLine();
-                numberOfAttempts++;
-            }
-            while (!DateTime.TryParse(userInput, out dateValue));
+        //        Console.Write(message + " ");
+        //        userInput = Console.ReadLine();
+        //        numberOfAttempts++;
+        //    }
+        //    while (!DateTime.TryParse(userInput, out dateValue));
 
-            int year = dateValue.Year;
-            int nowYear = DateTime.Now.Year;
-            int intValue = dateValue.DayOfYear;
-            intValue += ((year - nowYear) * 365);
-            return intValue;
-        }
-        
+        //    int year = dateValue.Year;
+        //    int nowYear = DateTime.Now.Year;
+        //    int intValue = dateValue.DayOfYear;
+        //    intValue += ((year - nowYear) * 365);
+        //    return intValue;
+        //}
+
         public static DateTime GetDateTime(string message)
         {
             string userInput = String.Empty;
@@ -148,6 +148,13 @@ namespace Capstone
             while (!DateTime.TryParse(userInput, out dateValue));
 
             return dateValue.Date;
+        }
+
+        public static string GetMonth(int input)
+        {                        
+            string[] months = new string[] { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
+
+            return months[input - 1];
         }
     }
 }
