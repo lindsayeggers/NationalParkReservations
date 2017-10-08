@@ -26,24 +26,33 @@ namespace Capstone
 
                 string input = CLIHelper.GetString("Please select an option:");
                 Console.WriteLine();
-
-                switch (input.ToUpper())
+                input = input.ToUpper();
+                if (input == "1" || input == "2" || input == "Q")
                 {
-                    case "1":
-                        ShowAllParks();
-                        break;
+                    switch (input)
+                    {
+                        case "1":
+                            ShowAllParks();
+                            break;
 
-                    case "2":
-                        //leads to sub menu
-                        CampgroundSubMenu camp = new CampgroundSubMenu();
-                        camp.DisplayCampGroundMenu();
-                        break;
+                        case "2":
+                            //leads to sub menu
+                            CampgroundSubMenu camp = new CampgroundSubMenu();
+                            camp.DisplayCampGroundMenu();
+                            break;
 
-                    case "Q":
-                        Console.WriteLine("Thanks for visiting Unicorn National Parks Registry");
-                        Console.ReadLine();
-                        return;
-
+                        case "Q":
+                            Console.WriteLine("Thanks for visiting Unicorn National Parks Registry");
+                            Console.ReadLine();
+                            return;
+                    }
+                }
+                else
+                {
+                    Console.Beep(1700, 250);
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Character entered is not a 1, 2, or Q");
+                    Console.ResetColor();
                 }
             }
         }

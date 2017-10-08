@@ -15,17 +15,21 @@ namespace Capstone.CLI
 
         private const string SQL_Fee = "select campground.daily_fee from campground where campground.campground_id = @campID";
 
-        public void SearchAvailableDates()
+        public void SearchAvailableDates(int park)
         {
+            CampsiteDAL camp = new CampsiteDAL(connectionString);
             //add campsite number
-            int campgroundId = CLIHelper.GetInteger("Please enter the campground you prefer:");
+            int campgroundIdInput = CLIHelper.GetInteger("Please enter the campground you prefer:");
+
+            camp.ConfirmPark(campgroundIdInput, park);
+            
             //add start date
             DateTime start = CLIHelper.GetDateTime("Please enter desired start date (MM/DD/YYYY):");
             //add end date
             DateTime end = CLIHelper.GetDateTime("Please enter desired end date (MM/DD/YYYY):");
 
-            CampsiteDAL camp = new CampsiteDAL(connectionString);
-            List<int> campArea = camp.ShowCampsitesAvailable(campgroundId, start, end);
+            
+            List<int> campArea = camp.ShowCampsitesAvailable(campgroundIdInput, start, end);
             int i = 0;
             Campground selection = new Campground();
 
@@ -36,7 +40,7 @@ namespace Capstone.CLI
                 //int @campID = campgroundId;
 
                 SqlCommand cmd = new SqlCommand(SQL_Fee, conn);
-                cmd.Parameters.AddWithValue("@campID", campgroundId);
+                cmd.Parameters.AddWithValue("@campID", campgroundIdInput);
 
                 SqlDataReader reader = cmd.ExecuteReader();
 
@@ -78,7 +82,6 @@ namespace Capstone.CLI
 
             }
             return;
-
         }
     }
 }
